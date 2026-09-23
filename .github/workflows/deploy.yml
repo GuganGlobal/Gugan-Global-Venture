@@ -17,7 +17,7 @@ jobs:
       - name: 🚚 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 🚀 Direct FTP Deploy with Diagnostics
+      - name: 🚀 Direct FTP Deploy to Real public_html
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
@@ -31,27 +31,53 @@ jobs:
           username = os.environ.get('FTP_USERNAME', '').strip()
           password = os.environ.get('FTP_PASSWORD', '').strip()
 
-          print(f"Connecting to FTP server: {server} as {username}...")
           ftp = ftplib.FTP(server, timeout=30)
           ftp.login(username, password)
           print(f"Login success! Initial PWD: {ftp.pwd()}")
-          
-          def list_deep(path=""):
-              print(f"\n--- Listing for {ftp.pwd()} ---")
-              ftp.dir()
-              items = ftp.nlst()
-              print(f"Items: {items}")
-              for it in items:
-                  if it in [".", ".."]:
-                      continue
-                  try:
-                      ftp.cwd(it)
-                      list_deep(it)
-                      ftp.cwd("..")
-                  except Exception:
-                      pass
 
-          list_deep()
+          # Try navigating to real public_html
+          target_cwd = None
+          for test_path in ["/home/prdo5v828f65/public_html", "../public_html", "/public_html", "public_html", "."]:
+              try:
+                  ftp.cwd(test_path)
+                  print(f"Successfully CWD to: {test_path} -> Current: {ftp.pwd()}")
+                  contents = ftp.nlst()
+                  print(f"Contents of {test_path}: {contents}")
+                  # The real public_html had cgi-bin from the user's screenshot
+                  if "cgi-bin" in contents or "home.html" in contents:
+                      print(f"*** FOUND REAL PUBLIC_HTML at {test_path} ***")
+                      target_cwd = test_path
+                      break
+              except Exception as e:
+                  print(f"Failed CWD to {test_path}: {e}")
+
+          if not target_cwd:
+              target_cwd = ftp.pwd()
+
+          print(f"\nFinal deployment target: {target_cwd}")
+          ftp.cwd(target_cwd)
+
+          def sync_tree(base_local, current_remote=""):
+              for item in sorted(os.listdir(base_local)):
+                  if item.startswith('.git') or item in ['deploy.zip', 'README.md', '.gitignore', 'deploy_result.txt']:
+                      continue
+                  local_path = os.path.join(base_local, item)
+                  if os.path.isfile(local_path):
+                      with open(local_path, 'rb') as f:
+                          ftp.storbinary(f'STOR {item}', f)
+                      print(f"  ✓ Uploaded: {item}")
+                  elif os.path.isdir(local_path):
+                      try:
+                          ftp.mkd(item)
+                      except Exception:
+                          pass
+                      ftp.cwd(item)
+                      sync_tree(local_path, f"{current_remote}/{item}")
+                      ftp.cwd("..")
+
+          sync_tree(".")
+          print("\n=== Contents after deployment ===")
+          ftp.dir()
           ftp.quit()
           EOF
 
@@ -60,5 +86,5 @@ jobs:
           git config --global user.name "Deploy Bot"
           git config --global user.email "bot@guganglobalventure.com"
           git add deploy_result.txt
-          git commit -m "chore: save FTP directory diagnosis [skip ci]" || true
+          git commit -m "chore: locate real public_html and deploy [skip ci]" || true
           git push origin main || true

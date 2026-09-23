@@ -1,16 +1,20 @@
-# Gugan Global Venture - Apache URL Rewrite for Modern Clean URLs
+# Gugan Global Venture - Clean URLs for GoDaddy cPanel
+Options -MultiViews +FollowSymLinks
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
-  # Redirect legacy /#view-home or query strings if needed
-  # Do not touch actual existing files, assets, or directories
+  # If index.html is requested directly, stop rewriting
+  RewriteRule ^index\.html$ - [L]
+
+  # If requested path is an existing file or directory, serve it
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Route all clean paths (/products, /about, /contact, etc.) to index.html
-  RewriteRule ^ index.html [L]
+  # Rewrite all other clean routes (/about, /products, /contact, etc.) to /index.html
+  RewriteRule ^(.*)$ /index.html [L,QSA]
 </IfModule>
 
 # Caching and Compression Optimization

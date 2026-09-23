@@ -17,7 +17,7 @@ jobs:
       - name: 🚚 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 🚀 Direct FTP Deploy to Real public_html
+      - name: 🔍 Check index.html contents across server
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
@@ -25,7 +25,7 @@ jobs:
         run: |
           python3 - << 'EOF' > deploy_result.txt 2>&1
           import ftplib
-          import os
+          import io
 
           server = os.environ.get('FTP_SERVER', '').strip()
           username = os.environ.get('FTP_USERNAME', '').strip()
@@ -33,58 +33,28 @@ jobs:
 
           ftp = ftplib.FTP(server, timeout=30)
           ftp.login(username, password)
-          print(f"Login success! Initial PWD: {ftp.pwd()}")
 
-          # Try navigating to real public_html
-          target_cwd = None
-          for test_path in ["/home/prdo5v828f65/public_html", "../public_html", "/public_html", "public_html", "."]:
+          dirs_to_check = ["/", "/public_html", "/public_html/guganglobalventure.com"]
+          for d in dirs_to_check:
               try:
-                  ftp.cwd(test_path)
-                  print(f"Successfully CWD to: {test_path} -> Current: {ftp.pwd()}")
-                  contents = ftp.nlst()
-                  print(f"Contents of {test_path}: {contents}")
-                  # The real public_html had cgi-bin from the user's screenshot
-                  if "cgi-bin" in contents or "home.html" in contents:
-                      print(f"*** FOUND REAL PUBLIC_HTML at {test_path} ***")
-                      target_cwd = test_path
-                      break
+                  ftp.cwd(d)
+                  bio = io.BytesIO()
+                  ftp.retrbinary("RETR index.html", bio.write)
+                  content = bio.getvalue().decode('utf-8', errors='ignore')
+                  print(f"\nDirectory: {d} | index.html length: {len(content)}")
+                  for line in content.splitlines():
+                      if "script.js" in line:
+                          print(f"  Line: {line.strip()}")
               except Exception as e:
-                  print(f"Failed CWD to {test_path}: {e}")
+                  print(f"Directory {d} error: {e}")
 
-          if not target_cwd:
-              target_cwd = ftp.pwd()
-
-          print(f"\nFinal deployment target: {target_cwd}")
-          ftp.cwd(target_cwd)
-
-          def sync_tree(base_local, current_remote=""):
-              for item in sorted(os.listdir(base_local)):
-                  if item.startswith('.git') or item in ['deploy.zip', 'README.md', '.gitignore', 'deploy_result.txt']:
-                      continue
-                  local_path = os.path.join(base_local, item)
-                  if os.path.isfile(local_path):
-                      with open(local_path, 'rb') as f:
-                          ftp.storbinary(f'STOR {item}', f)
-                      print(f"  ✓ Uploaded: {item}")
-                  elif os.path.isdir(local_path):
-                      try:
-                          ftp.mkd(item)
-                      except Exception:
-                          pass
-                      ftp.cwd(item)
-                      sync_tree(local_path, f"{current_remote}/{item}")
-                      ftp.cwd("..")
-
-          sync_tree(".")
-          print("\n=== Contents after deployment ===")
-          ftp.dir()
           ftp.quit()
           EOF
 
-      - name: 📝 Save Diagnostic Log
+      - name: 📝 Save Check Log
         run: |
           git config --global user.name "Deploy Bot"
           git config --global user.email "bot@guganglobalventure.com"
           git add deploy_result.txt
-          git commit -m "chore: locate real public_html and deploy [skip ci]" || true
+          git commit -m "chore: check index.html in all directories [skip ci]" || true
           git push origin main || true

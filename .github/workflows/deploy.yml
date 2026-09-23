@@ -14,29 +14,18 @@ jobs:
       - name: 🚚 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 📂 Deploy to Addon Domain Root (public_html/guganglobalventure.com/)
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        continue-on-error: true
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: public_html/guganglobalventure.com/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            deploy.zip
-            README.md
-            .gitignore
+      - name: 🔍 Inspect FTP Directory Structure
+        run: |
+          echo "=== Root Directory Listing ==="
+          curl -s --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" "ftp://${{ secrets.FTP_SERVER }}/" || true
 
-      - name: 📂 Deploy to Primary Root (public_html/)
+      - name: 📂 Deploy to FTP Server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        continue-on-error: true
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: public_html/
+          server-dir: ${{ secrets.FTP_SERVER_DIR != '' && secrets.FTP_SERVER_DIR || './' }}
           exclude: |
             **/.git*
             **/.git*/**

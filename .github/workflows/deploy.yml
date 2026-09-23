@@ -14,18 +14,13 @@ jobs:
       - name: 🚚 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 🔍 Inspect FTP Directory Structure
-        run: |
-          echo "=== Root Directory Listing ==="
-          curl -s --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" "ftp://${{ secrets.FTP_SERVER }}/" || true
-
-      - name: 📂 Deploy to FTP Server
+      - name: 📂 Deploy to GoDaddy public_html
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_SERVER_DIR != '' && secrets.FTP_SERVER_DIR || './' }}
+          server-dir: public_html/
           exclude: |
             **/.git*
             **/.git*/**

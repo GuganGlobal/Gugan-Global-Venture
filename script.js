@@ -131,51 +131,151 @@ function initNavigation() {
     }, 120);
   };
 
+  const PATH_TO_VIEW = {
+    '/': 'view-home',
+    '/home': 'view-home',
+    '/products': 'view-products',
+    '/export-process': 'view-export-process',
+    '/about': 'view-about',
+    '/about-us': 'view-about',
+    '/certificates': 'view-certificates',
+    '/contact': 'view-contact',
+    '/contact-us': 'view-contact'
+  };
+
+  const VIEW_TO_PATH = {
+    'view-home': '/',
+    'view-products': '/products',
+    'view-export-process': '/export-process',
+    'view-about': '/about',
+    'view-certificates': '/certificates',
+    'view-contact': '/contact'
+  };
+
+  window.navigateToRoute = function(target, updateHistory = true, scrollTargetId = null, varietyKey = null) {
+    let viewId = 'view-home';
+    let path = '/';
+
+    if (VIEW_TO_PATH[target]) {
+      viewId = target;
+      path = VIEW_TO_PATH[target];
+    } else if (PATH_TO_VIEW[target]) {
+      viewId = PATH_TO_VIEW[target];
+      path = target === '/home' ? '/' : target;
+    } else if (['chilli', 'turmeric', 'pepper', 'cardamom'].includes(target)) {
+      viewId = 'view-products';
+      path = `/products/${target}${varietyKey ? '/' + varietyKey : ''}`;
+    }
+
+    switchView(viewId);
+
+    if (updateHistory) {
+      if (window.location.pathname !== path || window.location.search || window.location.hash) {
+        history.pushState({ viewId, path, varietyKey }, '', path);
+      }
+    }
+
+    if (varietyKey || ['chilli', 'turmeric', 'pepper', 'cardamom'].includes(target)) {
+      window.navigateToProduct(target, varietyKey);
+    } else if (scrollTargetId) {
+      setTimeout(() => {
+        const targetEl = document.getElementById(scrollTargetId);
+        if (targetEl) {
+          const yOffset = -120;
+          const y = targetEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 150);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const viewId = link.getAttribute('data-view');
-      if (viewId) {
-        window.location.hash = viewId;
-        switchView(viewId);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (viewId && window.navigateToRoute) {
+        window.navigateToRoute(viewId);
       }
     });
   });
 
-  // Handle hash changes
-  function handleHash() {
-    const rawHash = (window.location.hash.replace('#', '') || '').trim() || 'view-home';
-    const validProducts = ['chilli', 'turmeric', 'pepper', 'cardamom'];
-
-    if (validProducts.includes(rawHash)) {
-      window.navigateToProduct(rawHash);
-      return;
-    }
-
-    if (rawHash.includes('-')) {
-      const firstHyphenIndex = rawHash.indexOf('-');
-      const possibleProduct = rawHash.substring(0, firstHyphenIndex);
-      const possibleVariety = rawHash.substring(firstHyphenIndex + 1);
-
-      if (validProducts.includes(possibleProduct)) {
-        window.navigateToProduct(possibleProduct, possibleVariety);
+  // Handle URL location changes (clean modern routes & legacy hash backward compatibility)
+  function handleLocationChange() {
+    const rawHash = (window.location.hash.replace('#', '') || '').trim();
+    if (rawHash) {
+      if (rawHash === 'view-home') {
+        history.replaceState({ viewId: 'view-home', path: '/' }, '', '/');
+        switchView('view-home');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      if (VIEW_TO_PATH[rawHash]) {
+        const cleanPath = VIEW_TO_PATH[rawHash];
+        history.replaceState({ viewId: rawHash, path: cleanPath }, '', cleanPath);
+        switchView(rawHash);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      const validProducts = ['chilli', 'turmeric', 'pepper', 'cardamom'];
+      if (validProducts.includes(rawHash)) {
+        const cleanPath = `/products/${rawHash}`;
+        history.replaceState({ viewId: 'view-products', path: cleanPath }, '', cleanPath);
+        window.navigateToProduct(rawHash);
+        return;
+      }
+      if (rawHash.includes('-')) {
+        const firstHyphenIndex = rawHash.indexOf('-');
+        const possibleProduct = rawHash.substring(0, firstHyphenIndex);
+        const possibleVariety = rawHash.substring(firstHyphenIndex + 1);
+        if (validProducts.includes(possibleProduct)) {
+          const cleanPath = `/products/${possibleProduct}/${possibleVariety}`;
+          history.replaceState({ viewId: 'view-products', path: cleanPath }, '', cleanPath);
+          window.navigateToProduct(possibleProduct, possibleVariety);
+          return;
+        }
+      }
+      const targetElement = document.getElementById(rawHash);
+      if (targetElement && targetElement.classList.contains('page-view')) {
+        const cleanPath = VIEW_TO_PATH[rawHash] || '/';
+        history.replaceState({ viewId: rawHash, path: cleanPath }, '', cleanPath);
+        switchView(rawHash);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
     }
 
-    const targetElement = document.getElementById(rawHash);
-    if (targetElement && targetElement.classList.contains('page-view')) {
-      switchView(rawHash);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      switchView('view-home');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    let pathname = window.location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
+    if (pathname.endsWith('/index.html') || pathname === '/index.html') {
+      pathname = pathname.replace('/index.html', '') || '/';
     }
+
+    if (PATH_TO_VIEW[pathname]) {
+      const viewId = PATH_TO_VIEW[pathname];
+      switchView(viewId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (pathname.startsWith('/products/')) {
+      const subpath = pathname.replace('/products/', '');
+      const parts = subpath.split('/');
+      const prod = parts[0];
+      const vari = parts[1] || null;
+      const validProducts = ['chilli', 'turmeric', 'pepper', 'cardamom'];
+      if (validProducts.includes(prod)) {
+        window.navigateToProduct(prod, vari);
+        return;
+      }
+    }
+
+    switchView('view-home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  window.addEventListener('hashchange', handleHash);
-  handleHash();
+  window.addEventListener('popstate', handleLocationChange);
+  handleLocationChange();
 
   // Global Click Delegation for data-navigate and data-product
   document.addEventListener('click', (e) => {
@@ -185,20 +285,7 @@ function initNavigation() {
       const target = navBtn.getAttribute('data-navigate');
       const scrollTargetId = navBtn.getAttribute('data-target');
       if (target) {
-        window.location.hash = target;
-        switchView(target);
-        if (scrollTargetId) {
-          setTimeout(() => {
-            const targetEl = document.getElementById(scrollTargetId);
-            if (targetEl) {
-              const yOffset = -120;
-              const y = targetEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
-              window.scrollTo({ top: y, behavior: 'smooth' });
-            }
-          }, 150);
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        window.navigateToRoute(target, true, scrollTargetId);
       }
       return;
     }
@@ -209,8 +296,7 @@ function initNavigation() {
       const productId = productBtn.getAttribute('data-product');
       const varietyKey = productBtn.getAttribute('data-variety') || null;
       if (productId) {
-        window.location.hash = varietyKey ? `${productId}-${varietyKey}` : productId;
-        window.navigateToProduct(productId, varietyKey);
+        window.navigateToRoute(productId, true, null, varietyKey);
       }
     }
   });
@@ -2432,9 +2518,10 @@ function initMobileMenu() {
 
   mobileNavItems.forEach(item => {
     item.addEventListener('click', (e) => {
+      e.preventDefault();
       const targetView = item.getAttribute('data-view');
-      if (targetView) {
-        window.location.hash = targetView;
+      if (targetView && window.navigateToRoute) {
+        window.navigateToRoute(targetView);
       }
       closeDrawer();
     });

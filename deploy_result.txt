@@ -1,0 +1,173 @@
+Connecting to FTP server: ftp.qze.2d3.mytemp.website as guganglobalventure@guganglobalventure.com...
+Login success! Initial PWD: /
+
+--- Listing for / ---
+drwxr-xr-x    4 prdo5v828f prdo5v828f       4096 Sep 23 11:42 .
+drwxr-xr-x    4 prdo5v828f prdo5v828f       4096 Sep 23 11:42 ..
+-rw-r--r--    1 prdo5v828f prdo5v828f       9715 Sep 23 11:42 .ftp-deploy-sync-state.json
+-rw-------    1 prdo5v828f prdo5v828f          4 Sep 23 11:16 .ftpquota
+-rw-r--r--    1 prdo5v828f prdo5v828f       1046 Sep 23 11:41 .htaccess
+drwxr-xr-x    2 prdo5v828f prdo5v828f       4096 Sep 23 11:42 assets
+-rw-r--r--    1 prdo5v828f prdo5v828f     350026 Sep 23 11:42 favicon.ico
+-rw-r--r--    1 prdo5v828f prdo5v828f     129181 Sep 23 11:42 index.html
+-rw-r--r--    1 prdo5v828f prdo5v828f         99 Sep 23 11:42 package-lock.json
+drwxr-xr-x    4 prdo5v828f prdo5v828f       4096 Sep 23 11:44 public_html
+-rw-r--r--    1 prdo5v828f prdo5v828f      97063 Sep 23 11:42 script.js
+-rw-r--r--    1 prdo5v828f prdo5v828f      11203 Sep 23 11:42 send-inquiry.php
+-rw-r--r--    1 prdo5v828f prdo5v828f     120126 Sep 23 11:42 styles.css
+Items: ['send-inquiry.php', 'assets', 'package-lock.json', 'script.js', 'favicon.ico', 'index.html', '.ftp-deploy-sync-state.json', '.', 'styles.css', 'public_html', '.htaccess', '..', '.ftpquota']
+
+--- Listing for /assets ---
+drwxr-xr-x    2 prdo5v828f prdo5v828f       4096 Sep 23 11:42 .
+drwxr-xr-x    4 prdo5v828f prdo5v828f       4096 Sep 23 11:42 ..
+-rw-r--r--    1 prdo5v828f prdo5v828f     778155 Sep 23 11:41 black_pepper.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      95717 Sep 23 11:41 cardamom_agb.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     239588 Sep 23 11:41 cardamom_ageb.webp
+-rw-r--r--    1 prdo5v828f prdo5v828f      66086 Sep 23 11:41 cardamom_ags.webp
+-rw-r--r--    1 prdo5v828f prdo5v828f      23494 Sep 23 11:41 cert_seal_fda.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      19829 Sep 23 11:41 cert_seal_fieo.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f       2011 Sep 23 11:41 cert_seal_fieo.svg
+-rw-r--r--    1 prdo5v828f prdo5v828f      11599 Sep 23 11:41 cert_seal_fssai.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      23943 Sep 23 11:41 cert_seal_iec.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      36019 Sep 23 11:41 cert_seal_iopepc.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      26476 Sep 23 11:41 cert_seal_iso.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      29503 Sep 23 11:41 cert_seal_spices_board.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      47672 Sep 23 11:41 chilli_byadgi.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f      31543 Sep 23 11:41 chilli_sannam.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     359080 Sep 23 11:41 chilli_teja.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     341141 Sep 23 11:42 chilli_wonder_hot.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     705243 Sep 23 11:42 dry_red_chilli.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     621956 Sep 23 11:42 green_cardamom.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     147416 Sep 23 11:42 gugan_icon_logo.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     147416 Sep 23 11:42 gugan_logo.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     150067 Sep 23 11:42 gugan_reception_office.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f      32515 Sep 23 11:42 gugan_wordmark.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     866289 Sep 23 11:42 hero_about.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      90253 Sep 23 11:42 hero_certificates.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     948129 Sep 23 11:42 hero_export_banner.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     881086 Sep 23 11:42 hero_export_process.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     948129 Sep 23 11:42 hero_home.png
+-rw-r--r--    1 prdo5v828f prdo5v828f    1009137 Sep 23 11:42 hero_products.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      40387 Sep 23 11:42 pepper_mg1.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     169584 Sep 23 11:42 pepper_mug.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f      99980 Sep 23 11:42 pepper_tellicherry.webp
+-rw-r--r--    1 prdo5v828f prdo5v828f      67038 Sep 23 11:42 turmeric_erode.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     668092 Sep 23 11:42 turmeric_finger.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     319311 Sep 23 11:42 turmeric_lakadong.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     173606 Sep 23 11:42 turmeric_nizamabad.webp
+-rw-r--r--    1 prdo5v828f prdo5v828f      63101 Sep 23 11:42 turmeric_rajapuri.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     209713 Sep 23 11:42 turmeric_salem.jpg
+Items: ['hero_certificates.jpg', 'cert_seal_iec.png', 'pepper_tellicherry.webp', 'chilli_sannam.jpg', 'cardamom_agb.jpg', 'gugan_wordmark.png', 'turmeric_lakadong.jpg', 'cert_seal_fieo.svg', 'black_pepper.png', 'cert_seal_spices_board.png', 'hero_home.png', 'hero_export_banner.png', 'cardamom_ags.webp', 'green_cardamom.png', 'cert_seal_fieo.jpg', 'cert_seal_fssai.png', 'cardamom_ageb.webp', '.', 'gugan_logo.png', 'dry_red_chilli.png', 'gugan_reception_office.jpg', 'chilli_wonder_hot.jpg', 'cert_seal_iopepc.png', 'chilli_byadgi.jpg', 'turmeric_nizamabad.webp', 'turmeric_rajapuri.jpg', 'turmeric_finger.png', 'gugan_icon_logo.png', 'hero_products.png', 'cert_seal_iso.png', 'pepper_mug.jpg', 'pepper_mg1.jpg', 'turmeric_salem.jpg', 'chilli_teja.jpg', 'cert_seal_fda.png', 'hero_export_process.png', 'hero_about.png', 'turmeric_erode.jpg', '..']
+
+--- Listing for /public_html ---
+drwxr-xr-x    4 prdo5v828f prdo5v828f       4096 Sep 23 11:44 .
+drwxr-xr-x    4 prdo5v828f prdo5v828f       4096 Sep 23 11:42 ..
+-rw-r--r--    1 prdo5v828f prdo5v828f       9715 Sep 23 11:44 .ftp-deploy-sync-state.json
+-rw-r--r--    1 prdo5v828f prdo5v828f       1046 Sep 23 11:47 .htaccess
+drwxr-xr-x    2 prdo5v828f prdo5v828f       4096 Sep 23 11:29 assets
+-rw-r--r--    1 prdo5v828f prdo5v828f     350026 Sep 23 11:49 favicon.ico
+drwxr-xr-x    3 prdo5v828f prdo5v828f       4096 Sep 23 11:39 guganglobalventure.com
+-rw-r--r--    1 prdo5v828f prdo5v828f     129181 Sep 23 11:49 index.html
+-rw-r--r--    1 prdo5v828f prdo5v828f         99 Sep 23 11:49 package-lock.json
+-rw-r--r--    1 prdo5v828f prdo5v828f      97063 Sep 23 11:49 script.js
+-rw-r--r--    1 prdo5v828f prdo5v828f      11203 Sep 23 11:49 send-inquiry.php
+-rw-r--r--    1 prdo5v828f prdo5v828f     120126 Sep 23 11:49 styles.css
+Items: ['send-inquiry.php', 'assets', 'package-lock.json', 'script.js', 'favicon.ico', 'index.html', '.ftp-deploy-sync-state.json', '.', 'styles.css', 'guganglobalventure.com', '.htaccess', '..']
+
+--- Listing for /public_html/assets ---
+drwxr-xr-x    2 prdo5v828f prdo5v828f       4096 Sep 23 11:29 .
+drwxr-xr-x    4 prdo5v828f prdo5v828f       4096 Sep 23 11:44 ..
+-rw-r--r--    1 prdo5v828f prdo5v828f     778155 Sep 23 11:47 black_pepper.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      95717 Sep 23 11:47 cardamom_agb.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     239588 Sep 23 11:47 cardamom_ageb.webp
+-rw-r--r--    1 prdo5v828f prdo5v828f      66086 Sep 23 11:48 cardamom_ags.webp
+-rw-r--r--    1 prdo5v828f prdo5v828f      23494 Sep 23 11:48 cert_seal_fda.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      19829 Sep 23 11:48 cert_seal_fieo.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f       2011 Sep 23 11:48 cert_seal_fieo.svg
+-rw-r--r--    1 prdo5v828f prdo5v828f      11599 Sep 23 11:48 cert_seal_fssai.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      23943 Sep 23 11:48 cert_seal_iec.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      36019 Sep 23 11:48 cert_seal_iopepc.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      26476 Sep 23 11:48 cert_seal_iso.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      29503 Sep 23 11:48 cert_seal_spices_board.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      47672 Sep 23 11:48 chilli_byadgi.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f      31543 Sep 23 11:48 chilli_sannam.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     359080 Sep 23 11:48 chilli_teja.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     341141 Sep 23 11:48 chilli_wonder_hot.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     705243 Sep 23 11:48 dry_red_chilli.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     621956 Sep 23 11:48 green_cardamom.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     147416 Sep 23 11:48 gugan_icon_logo.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     147416 Sep 23 11:48 gugan_logo.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     150067 Sep 23 11:48 gugan_reception_office.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f      32515 Sep 23 11:48 gugan_wordmark.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     866289 Sep 23 11:48 hero_about.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      90253 Sep 23 11:48 hero_certificates.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     948129 Sep 23 11:48 hero_export_banner.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     881086 Sep 23 11:48 hero_export_process.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     948129 Sep 23 11:48 hero_home.png
+-rw-r--r--    1 prdo5v828f prdo5v828f    1009137 Sep 23 11:48 hero_products.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      40387 Sep 23 11:48 pepper_mg1.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     169584 Sep 23 11:48 pepper_mug.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f      99980 Sep 23 11:48 pepper_tellicherry.webp
+-rw-r--r--    1 prdo5v828f prdo5v828f      67038 Sep 23 11:48 turmeric_erode.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     668092 Sep 23 11:48 turmeric_finger.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     319311 Sep 23 11:48 turmeric_lakadong.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     173606 Sep 23 11:48 turmeric_nizamabad.webp
+-rw-r--r--    1 prdo5v828f prdo5v828f      63101 Sep 23 11:48 turmeric_rajapuri.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     209713 Sep 23 11:48 turmeric_salem.jpg
+Items: ['hero_certificates.jpg', 'cert_seal_iec.png', 'pepper_tellicherry.webp', 'chilli_sannam.jpg', 'cardamom_agb.jpg', 'gugan_wordmark.png', 'turmeric_lakadong.jpg', 'cert_seal_fieo.svg', 'black_pepper.png', 'cert_seal_spices_board.png', 'hero_home.png', 'hero_export_banner.png', 'cardamom_ags.webp', 'green_cardamom.png', 'cert_seal_fieo.jpg', 'cert_seal_fssai.png', 'cardamom_ageb.webp', '.', 'gugan_logo.png', 'dry_red_chilli.png', 'gugan_reception_office.jpg', 'chilli_wonder_hot.jpg', 'cert_seal_iopepc.png', 'chilli_byadgi.jpg', 'turmeric_nizamabad.webp', 'turmeric_rajapuri.jpg', 'turmeric_finger.png', 'gugan_icon_logo.png', 'hero_products.png', 'cert_seal_iso.png', 'pepper_mug.jpg', 'pepper_mg1.jpg', 'turmeric_salem.jpg', 'chilli_teja.jpg', 'cert_seal_fda.png', 'hero_export_process.png', 'hero_about.png', 'turmeric_erode.jpg', '..']
+
+--- Listing for /public_html/guganglobalventure.com ---
+drwxr-xr-x    3 prdo5v828f prdo5v828f       4096 Sep 23 11:39 .
+drwxr-xr-x    4 prdo5v828f prdo5v828f       4096 Sep 23 11:44 ..
+-rw-r--r--    1 prdo5v828f prdo5v828f       9715 Sep 23 11:39 .ftp-deploy-sync-state.json
+-rw-r--r--    1 prdo5v828f prdo5v828f       1046 Sep 23 11:46 .htaccess
+drwxr-xr-x    2 prdo5v828f prdo5v828f       4096 Sep 23 11:39 assets
+-rw-r--r--    1 prdo5v828f prdo5v828f     350026 Sep 23 11:47 favicon.ico
+-rw-r--r--    1 prdo5v828f prdo5v828f     129181 Sep 23 11:47 index.html
+-rw-r--r--    1 prdo5v828f prdo5v828f         99 Sep 23 11:47 package-lock.json
+-rw-r--r--    1 prdo5v828f prdo5v828f      97063 Sep 23 11:47 script.js
+-rw-r--r--    1 prdo5v828f prdo5v828f      11203 Sep 23 11:47 send-inquiry.php
+-rw-r--r--    1 prdo5v828f prdo5v828f     120126 Sep 23 11:47 styles.css
+Items: ['send-inquiry.php', 'assets', 'package-lock.json', 'script.js', 'favicon.ico', 'index.html', '.ftp-deploy-sync-state.json', '.', 'styles.css', '.htaccess', '..']
+
+--- Listing for /public_html/guganglobalventure.com/assets ---
+drwxr-xr-x    2 prdo5v828f prdo5v828f       4096 Sep 23 11:39 .
+drwxr-xr-x    3 prdo5v828f prdo5v828f       4096 Sep 23 11:39 ..
+-rw-r--r--    1 prdo5v828f prdo5v828f     778155 Sep 23 11:46 black_pepper.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      95717 Sep 23 11:46 cardamom_agb.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     239588 Sep 23 11:46 cardamom_ageb.webp
+-rw-r--r--    1 prdo5v828f prdo5v828f      66086 Sep 23 11:46 cardamom_ags.webp
+-rw-r--r--    1 prdo5v828f prdo5v828f      23494 Sep 23 11:46 cert_seal_fda.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      19829 Sep 23 11:46 cert_seal_fieo.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f       2011 Sep 23 11:46 cert_seal_fieo.svg
+-rw-r--r--    1 prdo5v828f prdo5v828f      11599 Sep 23 11:46 cert_seal_fssai.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      23943 Sep 23 11:46 cert_seal_iec.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      36019 Sep 23 11:46 cert_seal_iopepc.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      26476 Sep 23 11:46 cert_seal_iso.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      29503 Sep 23 11:46 cert_seal_spices_board.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      47672 Sep 23 11:46 chilli_byadgi.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f      31543 Sep 23 11:46 chilli_sannam.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     359080 Sep 23 11:46 chilli_teja.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     341141 Sep 23 11:47 chilli_wonder_hot.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     705243 Sep 23 11:47 dry_red_chilli.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     621956 Sep 23 11:47 green_cardamom.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     147416 Sep 23 11:47 gugan_icon_logo.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     147416 Sep 23 11:47 gugan_logo.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     150067 Sep 23 11:47 gugan_reception_office.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f      32515 Sep 23 11:47 gugan_wordmark.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     866289 Sep 23 11:47 hero_about.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      90253 Sep 23 11:47 hero_certificates.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     948129 Sep 23 11:47 hero_export_banner.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     881086 Sep 23 11:47 hero_export_process.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     948129 Sep 23 11:47 hero_home.png
+-rw-r--r--    1 prdo5v828f prdo5v828f    1009137 Sep 23 11:47 hero_products.png
+-rw-r--r--    1 prdo5v828f prdo5v828f      40387 Sep 23 11:47 pepper_mg1.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     169584 Sep 23 11:47 pepper_mug.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f      99980 Sep 23 11:47 pepper_tellicherry.webp
+-rw-r--r--    1 prdo5v828f prdo5v828f      67038 Sep 23 11:47 turmeric_erode.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     668092 Sep 23 11:47 turmeric_finger.png
+-rw-r--r--    1 prdo5v828f prdo5v828f     319311 Sep 23 11:47 turmeric_lakadong.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     173606 Sep 23 11:47 turmeric_nizamabad.webp
+-rw-r--r--    1 prdo5v828f prdo5v828f      63101 Sep 23 11:47 turmeric_rajapuri.jpg
+-rw-r--r--    1 prdo5v828f prdo5v828f     209713 Sep 23 11:47 turmeric_salem.jpg
+Items: ['hero_certificates.jpg', 'cert_seal_iec.png', 'pepper_tellicherry.webp', 'chilli_sannam.jpg', 'cardamom_agb.jpg', 'gugan_wordmark.png', 'turmeric_lakadong.jpg', 'cert_seal_fieo.svg', 'black_pepper.png', 'cert_seal_spices_board.png', 'hero_home.png', 'hero_export_banner.png', 'cardamom_ags.webp', 'green_cardamom.png', 'cert_seal_fieo.jpg', 'cert_seal_fssai.png', 'cardamom_ageb.webp', '.', 'gugan_logo.png', 'dry_red_chilli.png', 'gugan_reception_office.jpg', 'chilli_wonder_hot.jpg', 'cert_seal_iopepc.png', 'chilli_byadgi.jpg', 'turmeric_nizamabad.webp', 'turmeric_rajapuri.jpg', 'turmeric_finger.png', 'gugan_icon_logo.png', 'hero_products.png', 'cert_seal_iso.png', 'pepper_mug.jpg', 'pepper_mg1.jpg', 'turmeric_salem.jpg', 'chilli_teja.jpg', 'cert_seal_fda.png', 'hero_export_process.png', 'hero_about.png', 'turmeric_erode.jpg', '..']

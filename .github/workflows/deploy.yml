@@ -14,17 +14,52 @@ jobs:
       - name: 🚚 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 📂 Deploy via FTP to GoDaddy
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ./
-          exclude: |
-            **/.git*
-            **/.git*/**
-            deploy.zip
-            deploy_result.txt
-            README.md
-            .gitignore
+      - name: 🚀 Test Connection & Deploy
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          python3 - << 'EOF'
+          import ftplib
+          import os
+          import sys
+
+          server = os.environ.get('FTP_SERVER', '').strip()
+          username = os.environ.get('FTP_USERNAME', '').strip()
+          password = os.environ.get('FTP_PASSWORD', '').strip()
+
+          print(f"Connecting to {server} as {username}...")
+          try:
+              ftp = ftplib.FTP(server, timeout=30)
+              ftp.login(username, password)
+              print(f"✓ FTP Login Success! PWD: {ftp.pwd()}")
+              print("Directory contents:")
+              ftp.dir()
+          except Exception as e:
+              print(f"✗ FTP Connection/Login Error: {e}")
+              sys.exit(1)
+
+          def sync_tree(base_local):
+              for item in sorted(os.listdir(base_local)):
+                  if item.startswith('.git') or item in ['deploy.zip', 'README.md', '.gitignore']:
+                      continue
+                  local_path = os.path.join(base_local, item)
+                  if os.path.isfile(local_path):
+                      with open(local_path, 'rb') as f:
+                          ftp.storbinary(f'STOR {item}', f)
+                      print(f"  ✓ Uploaded: {item}")
+                  elif os.path.isdir(local_path):
+                      try:
+                          ftp.mkd(item)
+                      except Exception:
+                          pass
+                      ftp.cwd(item)
+                      sync_tree(local_path)
+                      ftp.cwd("..")
+
+          print("\nUploading project files...")
+          sync_tree(".")
+          print("\n✓ Deployment completed!")
+          ftp.quit()
+          EOF
